@@ -1,0 +1,12 @@
+package br.com.ademar.textformatter;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class TextFormatterApplicationTests {
+
+    @Test
+    void contextLoads() {
+    }
+}
