@@ -1,5 +1,6 @@
 package br.com.ademar.textformatter.service;
 
+import br.com.ademar.textformatter.model.ChamadoMonitor;
 import br.com.ademar.textformatter.model.ChamadoPje;
 import org.springframework.stereotype.Service;
 
@@ -14,5 +15,16 @@ public class ChamadoService {
                 + "Módulo do Sistema: " + chamado.getModuloSistema() + "\n"
                 + "Descrição do Erro: " + chamado.getDescricaoErro() + "\n"
                 + "Link do Print: " + chamado.getLinkPrint();
+    }
+
+    public String formatarChamadoMonitor(ChamadoMonitor chamado) {
+        return String.format(
+                "Usuário solicita a substituição do monitor de patrimônio %s, que apresenta o seguinte defeito: %s. "
+                        + "O monitor está conectado ao notebook de patrimônio %s. "
+                        + "As conexões disponíveis no equipamento são: %s.",
+                chamado.getPatrimonioMonitor(),
+                chamado.getMotivoSubstituicao(),
+                chamado.getPatrimonioNotebook(),
+                chamado.getConexoesDisponiveis());
     }
 }

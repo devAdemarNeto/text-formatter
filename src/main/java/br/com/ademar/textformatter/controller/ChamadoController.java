@@ -1,5 +1,6 @@
 package br.com.ademar.textformatter.controller;
 
+import br.com.ademar.textformatter.model.ChamadoMonitor;
 import br.com.ademar.textformatter.model.ChamadoPje;
 import br.com.ademar.textformatter.service.ChamadoService;
 import org.springframework.stereotype.Controller;
@@ -29,5 +30,20 @@ public class ChamadoController {
         model.addAttribute("chamado", chamado);
         model.addAttribute("textoFormatado", textoFormatado);
         return "formulario";
+    }
+
+    @GetMapping("/monitor")
+    public String exibirFormularioMonitor(Model model) {
+        model.addAttribute("chamado", new ChamadoMonitor());
+        return "monitor";
+    }
+
+    @PostMapping("/monitor/gerar")
+    public String gerarTextoMonitor(ChamadoMonitor chamado, Model model) {
+        String textoFormatado = chamadoService.formatarChamadoMonitor(chamado);
+
+        model.addAttribute("chamado", chamado);
+        model.addAttribute("textoFormatado", textoFormatado);
+        return "monitor";
     }
 }
