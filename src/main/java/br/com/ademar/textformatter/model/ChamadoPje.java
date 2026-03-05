@@ -1,11 +1,19 @@
 package br.com.ademar.textformatter.model;
 
+import jakarta.validation.constraints.NotBlank;
+
 public class ChamadoPje {
 
+    @NotBlank(message = "O número do processo é obrigatório")
     private String numeroProcesso;
+
+    @NotBlank(message = "O nome do usuário é obrigatório")
     private String nomeUsuario;
+
     private String cpfCnpj;
     private String moduloSistema;
+
+    @NotBlank(message = "A descrição do erro é obrigatória")
     private String descricaoErro;
 
     public ChamadoPje() {

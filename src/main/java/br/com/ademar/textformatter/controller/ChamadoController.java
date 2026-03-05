@@ -3,9 +3,12 @@ package br.com.ademar.textformatter.controller;
 import br.com.ademar.textformatter.model.ChamadoMonitor;
 import br.com.ademar.textformatter.model.ChamadoPje;
 import br.com.ademar.textformatter.service.ChamadoService;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
@@ -24,10 +27,13 @@ public class ChamadoController {
     }
 
     @PostMapping("/pje/gerar")
-    public String gerarTexto(ChamadoPje chamado, Model model) {
-        String textoFormatado = chamadoService.formatarChamadoPje(chamado);
+    public String gerarTexto(@Valid @ModelAttribute("chamado") ChamadoPje chamado,
+            BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            return "formulario";
+        }
 
-        model.addAttribute("chamado", chamado);
+        String textoFormatado = chamadoService.formatarChamadoPje(chamado);
         model.addAttribute("textoFormatado", textoFormatado);
         return "formulario";
     }
