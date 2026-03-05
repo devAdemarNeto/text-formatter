@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org" data-bs-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remoção de Equipamento do AD</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            min-height: 100vh;
+        }
+
+        .card {
+            border: 1px solid #3a3a3a;
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, #1a237e, #283593);
+            border-bottom: 1px solid #3a3a3a;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #1565c0, #1a237e);
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #1976d2, #283593);
+            transform: translateY(-1px);
+        }
+
+        .resultado-area {
+            background-color: #1e1e1e;
+            border: 1px solid #4a4a4a;
+            color: #e0e0e0;
+            font-family: 'Consolas', 'Courier New', monospace;
+            resize: none;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            border-color: #5c6bc0;
+            box-shadow: 0 0 0 0.2rem rgba(92, 107, 192, 0.25);
+        }
+    </style>
+</head>
+
+<body class="bg-dark text-light" data-bs-theme="dark">
+
+    <div th:replace="~{navbar :: menuSuperior}"></div>
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+
+                <!-- Card do Formulário -->
+                <div class="card bg-secondary bg-opacity-25 shadow-lg">
+                    <div class="card-header text-center py-3">
+                        <h4 class="mb-0 text-white">🗑️ Remoção de Equipamento do AD</h4>
+                    </div>
+
+                    <div class="card-body p-4">
+                        <form th:action="@{/remover-ad/gerar}" th:object="${remocao}" method="post">
+
+                            <div class="mb-3">
+                                <label for="patrimonio" class="form-label fw-semibold">Patrimônio do Equipamento</label>
+                                <input type="text" class="form-control" id="patrimonio" th:field="*{patrimonio}"
+                                    th:classappend="${#fields.hasErrors('patrimonio')} ? 'is-invalid'"
+                                    placeholder="Ex: PAT-000000">
+                                <div th:if="${#fields.hasErrors('patrimonio')}" class="text-danger small mt-1">
+                                    <span th:errors="*{patrimonio}"></span>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="setorEquipamento" class="form-label fw-semibold">Setor do
+                                    Equipamento</label>
+                                <input type="text" class="form-control" id="setorEquipamento"
+                                    th:field="*{setorEquipamento}"
+                                    th:classappend="${#fields.hasErrors('setorEquipamento')} ? 'is-invalid'"
+                                    placeholder="Ex: Secretaria da 1ª Vara Cível">
+                                <div th:if="${#fields.hasErrors('setorEquipamento')}" class="text-danger small mt-1">
+                                    <span th:errors="*{setorEquipamento}"></span>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="motivoRemocao" class="form-label fw-semibold">Motivo da Remoção</label>
+                                <textarea class="form-control" id="motivoRemocao" th:field="*{motivoRemocao}" rows="3"
+                                    th:classappend="${#fields.hasErrors('motivoRemocao')} ? 'is-invalid'"
+                                    placeholder="Ex: Backup, Leilão, Erro de nomenclatura, Desativação..."></textarea>
+                                <div th:if="${#fields.hasErrors('motivoRemocao')}" class="text-danger small mt-1">
+                                    <span th:errors="*{motivoRemocao}"></span>
+                                </div>
+                            </div>
+
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary btn-lg">
+                                    🚀 Gerar Texto
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Área do Texto Gerado (condicional) -->
+                <div th:if="${textoFormatado}" class="card bg-secondary bg-opacity-25 shadow-lg mt-4 mb-5">
+                    <div class="card-header text-center py-3">
+                        <h5 class="mb-0 text-white">📋 Texto do Chamado Gerado</h5>
+                    </div>
+                    <div class="card-body p-4">
+                        <textarea id="textoResultado" class="form-control resultado-area mb-3" rows="10" readonly
+                            th:text="${textoFormatado}"></textarea>
+                        <div class="d-grid">
+                            <button id="btnCopiar" class="btn btn-success btn-lg" onclick="copiarChamado()">
+                                📄 Copiar Chamado
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function copiarChamado() {
+            const textarea = document.getElementById('textoResultado');
+            const btnCopiar = document.getElementById('btnCopiar');
+
+            navigator.clipboard.writeText(textarea.value).then(() => {
+                btnCopiar.textContent = '✅ Copiado!';
+                btnCopiar.classList.replace('btn-success', 'btn-outline-success');
+
+                setTimeout(() => {
+                    btnCopiar.textContent = '📄 Copiar Chamado';
+                    btnCopiar.classList.replace('btn-outline-success', 'btn-success');
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+
+</html>

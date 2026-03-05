@@ -2,6 +2,7 @@ package br.com.ademar.textformatter.controller;
 
 import br.com.ademar.textformatter.model.ChamadoMonitor;
 import br.com.ademar.textformatter.model.ChamadoPje;
+import br.com.ademar.textformatter.model.RemoverDoAD;
 import br.com.ademar.textformatter.service.ChamadoService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
@@ -51,5 +52,23 @@ public class ChamadoController {
         model.addAttribute("chamado", chamado);
         model.addAttribute("textoFormatado", textoFormatado);
         return "monitor";
+    }
+
+    @GetMapping("/remover-ad")
+    public String exibirFormularioRemoverAD(Model model) {
+        model.addAttribute("remocao", new RemoverDoAD());
+        return "remover-ad";
+    }
+
+    @PostMapping("/remover-ad/gerar")
+    public String gerarTextoRemoverAD(@Valid @ModelAttribute("remocao") RemoverDoAD remocao,
+            BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            return "remover-ad";
+        }
+
+        String textoFormatado = chamadoService.formatarRemocaoAD(remocao);
+        model.addAttribute("textoFormatado", textoFormatado);
+        return "remover-ad";
     }
 }

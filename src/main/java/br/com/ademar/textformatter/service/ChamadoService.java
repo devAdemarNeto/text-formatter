@@ -2,6 +2,7 @@ package br.com.ademar.textformatter.service;
 
 import br.com.ademar.textformatter.model.ChamadoMonitor;
 import br.com.ademar.textformatter.model.ChamadoPje;
+import br.com.ademar.textformatter.model.RemoverDoAD;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -25,5 +26,13 @@ public class ChamadoService {
                 chamado.getMotivoSubstituicao(),
                 chamado.getPatrimonioNotebook(),
                 chamado.getConexoesDisponiveis());
+    }
+
+    public String formatarRemocaoAD(RemoverDoAD remocao) {
+        return String.format(
+                "Solicito a remoção do computador %s do Active Directory. Motivo: %s. Setor de origem: %s.",
+                remocao.getPatrimonio(),
+                remocao.getMotivoRemocao(),
+                remocao.getSetorEquipamento());
     }
 }
