@@ -25,12 +25,10 @@
 
 <body class="bg-dark text-light" data-bs-theme="dark">
 
-    <div th:replace="~{navbar :: menuSuperior}"></div>
-
     <div class="container mt-5">
         <div class="text-center">
-            <h1 class="fw-bold">🛠️ Central de Ferramentas N2</h1>
-            <p class="lead text-secondary mt-2">Selecione o gerador de chamados desejado</p>
+            <h1 class="fw-bold">🛠️ Agente de Formatação N2</h1>
+            <p class="lead text-secondary mt-2">Selecione um modelo abaixo para gerar seu texto padronizado</p>
         </div>
 
         <div class="row mt-5 justify-content-center">
@@ -73,6 +71,19 @@
                             patrimônio, motivo e setor.
                         </p>
                         <a href="/remover-ad" class="btn btn-danger btn-lg mt-2">Acessar</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card Devolução de Equipamento -->
+            <div class="col-md-5 mb-4">
+                <div class="card text-center bg-secondary bg-opacity-25 shadow">
+                    <div class="card-body p-4">
+                        <h5 class="card-title fw-bold mb-3">📦 Devolução de Equipamento</h5>
+                        <p class="card-text text-secondary">
+                            Gere textos para solicitar a devolução de equipamentos e retirada do inventário da unidade.
+                        </p>
+                        <a href="/devolucao" class="btn btn-warning btn-lg mt-2">Acessar</a>
                     </div>
                 </div>
             </div>

@@ -2,6 +2,7 @@ package br.com.ademar.textformatter.controller;
 
 import br.com.ademar.textformatter.model.ChamadoMonitor;
 import br.com.ademar.textformatter.model.ChamadoPje;
+import br.com.ademar.textformatter.model.DevolucaoEquipamento;
 import br.com.ademar.textformatter.model.RemoverDoAD;
 import br.com.ademar.textformatter.service.ChamadoService;
 import jakarta.validation.Valid;
@@ -70,5 +71,23 @@ public class ChamadoController {
         String textoFormatado = chamadoService.formatarRemocaoAD(remocao);
         model.addAttribute("textoFormatado", textoFormatado);
         return "remover-ad";
+    }
+
+    @GetMapping("/devolucao")
+    public String exibirFormularioDevolucao(Model model) {
+        model.addAttribute("devolucao", new DevolucaoEquipamento());
+        return "devolucao";
+    }
+
+    @PostMapping("/devolucao/gerar")
+    public String gerarTextoDevolucao(@Valid @ModelAttribute("devolucao") DevolucaoEquipamento devolucao,
+            BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            return "devolucao";
+        }
+
+        String textoFormatado = chamadoService.formatarDevolucao(devolucao);
+        model.addAttribute("textoFormatado", textoFormatado);
+        return "devolucao";
     }
 }

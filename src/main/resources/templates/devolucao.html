@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerador de Chamado PJe - N3</title>
+    <title>Devolução de Equipamento</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -57,64 +57,46 @@
                 <!-- Card do Formulário -->
                 <div class="card bg-secondary bg-opacity-25 shadow-lg">
                     <div class="card-header text-center py-3">
-                        <h4 class="mb-0 text-white">🖥️ Gerador de Chamado N3 - PJe</h4>
+                        <h4 class="mb-0 text-white">📦 Devolução de Equipamento</h4>
                     </div>
 
                     <div class="card-body p-4">
-                        <form th:action="@{/pje/gerar}" th:object="${chamado}" method="post">
+                        <form th:action="@{/devolucao/gerar}" th:object="${devolucao}" method="post">
 
                             <div class="mb-3">
-                                <label for="numeroProcesso" class="form-label fw-semibold">Número do Processo</label>
-                                <input type="text" class="form-control" id="numeroProcesso" th:field="*{numeroProcesso}"
-                                    th:classappend="${#fields.hasErrors('numeroProcesso')} ? 'is-invalid'"
-                                    placeholder="Ex: 0000000-00.0000.0.00.0000">
-                                <div th:if="${#fields.hasErrors('numeroProcesso')}" class="text-danger small mt-1">
-                                    <span th:errors="*{numeroProcesso}"></span>
+                                <label for="tipoEquipamento" class="form-label fw-semibold">Tipo de Equipamento</label>
+                                <input type="text" class="form-control" id="tipoEquipamento"
+                                    th:field="*{tipoEquipamento}"
+                                    th:classappend="${#fields.hasErrors('tipoEquipamento')} ? 'is-invalid'"
+                                    placeholder="Ex: Nobreak, Monitor, Impressora">
+                                <div th:if="${#fields.hasErrors('tipoEquipamento')}" class="text-danger small mt-1">
+                                    <span th:errors="*{tipoEquipamento}"></span>
                                 </div>
                             </div>
 
                             <div class="mb-3">
-                                <label for="nomeUsuario" class="form-label fw-semibold">Nome do Usuário Afetado</label>
-                                <input type="text" class="form-control" id="nomeUsuario" th:field="*{nomeUsuario}"
-                                    th:classappend="${#fields.hasErrors('nomeUsuario')} ? 'is-invalid'"
-                                    placeholder="Nome completo do usuário">
-                                <div th:if="${#fields.hasErrors('nomeUsuario')}" class="text-danger small mt-1">
-                                    <span th:errors="*{nomeUsuario}"></span>
+                                <label for="patrimonio" class="form-label fw-semibold">Patrimônio</label>
+                                <input type="text" class="form-control" id="patrimonio" th:field="*{patrimonio}"
+                                    th:classappend="${#fields.hasErrors('patrimonio')} ? 'is-invalid'"
+                                    placeholder="Ex: PAT-000000">
+                                <div th:if="${#fields.hasErrors('patrimonio')}" class="text-danger small mt-1">
+                                    <span th:errors="*{patrimonio}"></span>
                                 </div>
                             </div>
 
                             <div class="mb-3">
-                                <label for="cpfCnpj" class="form-label fw-semibold">CPF/CNPJ</label>
-                                <input type="text" class="form-control" id="cpfCnpj" th:field="*{cpfCnpj}"
-                                    placeholder="Documento do usuário">
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="moduloSistema" class="form-label fw-semibold">Módulo do Sistema</label>
-                                <select class="form-select" id="moduloSistema" th:field="*{moduloSistema}">
-                                    <option value="">Selecione o módulo...</option>
-                                    <option value="PJe 1º Grau">PJe 1º Grau</option>
-                                    <option value="PJe 2º Grau">PJe 2º Grau</option>
-                                    <option value="PJeCalc">PJeCalc</option>
-                                    <option value="PJe Corregedoria">PJe Corregedoria</option>
-                                    <option value="PJe Administrativo">PJe Administrativo</option>
-                                    <option value="Outro">Outro</option>
-                                </select>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="descricaoErro" class="form-label fw-semibold">Descrição do Erro</label>
-                                <textarea class="form-control" id="descricaoErro" th:field="*{descricaoErro}" rows="4"
-                                    th:classappend="${#fields.hasErrors('descricaoErro')} ? 'is-invalid'"
-                                    placeholder="Descreva detalhadamente o erro encontrado..."></textarea>
-                                <div th:if="${#fields.hasErrors('descricaoErro')}" class="text-danger small mt-1">
-                                    <span th:errors="*{descricaoErro}"></span>
+                                <label for="setorOrigem" class="form-label fw-semibold">Setor de Origem</label>
+                                <input type="text" class="form-control" id="setorOrigem" th:field="*{setorOrigem}"
+                                    th:classappend="${#fields.hasErrors('setorOrigem')} ? 'is-invalid'"
+                                    placeholder="Ex: Secretaria da 2ª Vara Criminal">
+                                <div th:if="${#fields.hasErrors('setorOrigem')}" class="text-danger small mt-1">
+                                    <span th:errors="*{setorOrigem}"></span>
                                 </div>
                             </div>
 
                             <div class="d-grid">
                                 <button type="submit" class="btn btn-primary btn-lg">
-                                    🚀 Gerar Chamado
+                                    🚀 Gerar Texto
                                 </button>
                             </div>
                         </form>

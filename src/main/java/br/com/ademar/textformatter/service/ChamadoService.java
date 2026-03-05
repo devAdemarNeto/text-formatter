@@ -2,6 +2,7 @@ package br.com.ademar.textformatter.service;
 
 import br.com.ademar.textformatter.model.ChamadoMonitor;
 import br.com.ademar.textformatter.model.ChamadoPje;
+import br.com.ademar.textformatter.model.DevolucaoEquipamento;
 import br.com.ademar.textformatter.model.RemoverDoAD;
 import org.springframework.stereotype.Service;
 
@@ -34,5 +35,14 @@ public class ChamadoService {
                 remocao.getPatrimonio(),
                 remocao.getMotivoRemocao(),
                 remocao.getSetorEquipamento());
+    }
+
+    public String formatarDevolucao(DevolucaoEquipamento devolucao) {
+        return String.format(
+                "Usuário solicita a devolução de %s, patrimônio %s, referente ao setor: %s. "
+                        + "O equipamento deverá ser retirado do inventário da unidade.",
+                devolucao.getTipoEquipamento(),
+                devolucao.getPatrimonio(),
+                devolucao.getSetorOrigem());
     }
 }
