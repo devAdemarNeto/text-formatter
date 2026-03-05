@@ -1,30 +1,19 @@
-package br.com.ademar.textformatter.model;
+package br.com.ademar.textformatter.dto;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
 
-@Entity
-public class RemoverDoAD {
+public class RemoverDoADDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+    @NotBlank(message = "O patrimônio é obrigatório")
     private String patrimonio;
+
+    @NotBlank(message = "O motivo da remoção é obrigatório")
     private String motivoRemocao;
+
+    @NotBlank(message = "O setor do equipamento é obrigatório")
     private String setorEquipamento;
 
-    public RemoverDoAD() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public RemoverDoADDTO() {
     }
 
     public String getPatrimonio() {

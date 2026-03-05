@@ -1,32 +1,22 @@
-package br.com.ademar.textformatter.model;
+package br.com.ademar.textformatter.dto;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
 
-@Entity
-public class ChamadoPje {
+public class ChamadoPjeDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+    @NotBlank(message = "O número do processo é obrigatório")
     private String numeroProcesso;
+
+    @NotBlank(message = "O nome do usuário é obrigatório")
     private String nomeUsuario;
+
     private String cpfCnpj;
     private String moduloSistema;
+
+    @NotBlank(message = "A descrição do erro é obrigatória")
     private String descricaoErro;
 
-    public ChamadoPje() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public ChamadoPjeDTO() {
     }
 
     public String getNumeroProcesso() {

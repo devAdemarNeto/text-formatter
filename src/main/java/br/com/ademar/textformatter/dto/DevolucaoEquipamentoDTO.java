@@ -1,30 +1,19 @@
-package br.com.ademar.textformatter.model;
+package br.com.ademar.textformatter.dto;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
 
-@Entity
-public class DevolucaoEquipamento {
+public class DevolucaoEquipamentoDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+    @NotBlank(message = "O tipo de equipamento é obrigatório")
     private String tipoEquipamento;
+
+    @NotBlank(message = "O patrimônio é obrigatório")
     private String patrimonio;
+
+    @NotBlank(message = "O setor de origem é obrigatório")
     private String setorOrigem;
 
-    public DevolucaoEquipamento() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public DevolucaoEquipamentoDTO() {
     }
 
     public String getTipoEquipamento() {
