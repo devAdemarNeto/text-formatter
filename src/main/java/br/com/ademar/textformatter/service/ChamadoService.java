@@ -13,8 +13,7 @@ public class ChamadoService {
                 + "Usuário Afetado: " + chamado.getNomeUsuario() + "\n"
                 + "CPF/CNPJ: " + chamado.getCpfCnpj() + "\n"
                 + "Módulo do Sistema: " + chamado.getModuloSistema() + "\n"
-                + "Descrição do Erro: " + chamado.getDescricaoErro() + "\n"
-                + "Link do Print: " + chamado.getLinkPrint();
+                + "Descrição do Erro: " + chamado.getDescricaoErro();
     }
 
     public String formatarChamadoMonitor(ChamadoMonitor chamado) {

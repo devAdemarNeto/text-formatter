@@ -7,7 +7,6 @@ public class ChamadoPje {
     private String cpfCnpj;
     private String moduloSistema;
     private String descricaoErro;
-    private String linkPrint;
 
     public ChamadoPje() {
     }
@@ -50,13 +49,5 @@ public class ChamadoPje {
 
     public void setDescricaoErro(String descricaoErro) {
         this.descricaoErro = descricaoErro;
-    }
-
-    public String getLinkPrint() {
-        return linkPrint;
-    }
-
-    public void setLinkPrint(String linkPrint) {
-        this.linkPrint = linkPrint;
     }
 }
