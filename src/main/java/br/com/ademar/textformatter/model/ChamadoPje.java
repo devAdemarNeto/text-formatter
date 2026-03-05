@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import java.time.LocalDateTime;
 
 @Entity
 public class ChamadoPje {
@@ -17,6 +18,7 @@ public class ChamadoPje {
     private String cpfCnpj;
     private String moduloSistema;
     private String descricaoErro;
+    private LocalDateTime dataCriacao;
 
     public ChamadoPje() {
     }
@@ -67,5 +69,13 @@ public class ChamadoPje {
 
     public void setDescricaoErro(String descricaoErro) {
         this.descricaoErro = descricaoErro;
+    }
+
+    public LocalDateTime getDataCriacao() {
+        return dataCriacao;
+    }
+
+    public void setDataCriacao(LocalDateTime dataCriacao) {
+        this.dataCriacao = dataCriacao;
     }
 }

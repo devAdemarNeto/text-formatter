@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import java.time.LocalDateTime;
 
 @Entity
 public class DevolucaoEquipamento {
@@ -15,6 +16,7 @@ public class DevolucaoEquipamento {
     private String tipoEquipamento;
     private String patrimonio;
     private String setorOrigem;
+    private LocalDateTime dataCriacao;
 
     public DevolucaoEquipamento() {
     }
@@ -49,5 +51,13 @@ public class DevolucaoEquipamento {
 
     public void setSetorOrigem(String setorOrigem) {
         this.setorOrigem = setorOrigem;
+    }
+
+    public LocalDateTime getDataCriacao() {
+        return dataCriacao;
+    }
+
+    public void setDataCriacao(LocalDateTime dataCriacao) {
+        this.dataCriacao = dataCriacao;
     }
 }

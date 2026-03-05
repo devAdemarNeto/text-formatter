@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import java.time.LocalDateTime;
 
 @Entity
 public class RemoverDoAD {
@@ -15,6 +16,7 @@ public class RemoverDoAD {
     private String patrimonio;
     private String motivoRemocao;
     private String setorEquipamento;
+    private LocalDateTime dataCriacao;
 
     public RemoverDoAD() {
     }
@@ -49,5 +51,13 @@ public class RemoverDoAD {
 
     public void setSetorEquipamento(String setorEquipamento) {
         this.setorEquipamento = setorEquipamento;
+    }
+
+    public LocalDateTime getDataCriacao() {
+        return dataCriacao;
+    }
+
+    public void setDataCriacao(LocalDateTime dataCriacao) {
+        this.dataCriacao = dataCriacao;
     }
 }

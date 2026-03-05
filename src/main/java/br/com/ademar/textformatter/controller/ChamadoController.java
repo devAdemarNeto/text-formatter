@@ -88,4 +88,10 @@ public class ChamadoController {
         model.addAttribute("textoFormatado", textoFormatado);
         return "devolucao";
     }
+
+    @GetMapping("/historico")
+    public String exibirHistorico(Model model) {
+        model.addAttribute("registros", chamadoService.buscarHistorico());
+        return "historico";
+    }
 }
